@@ -16,6 +16,6 @@ class ProductCategory extends Model
 
     public function Products()
     {
-        return $this->hasMany(Transaction::class, 'categories_id', 'id');
+        return $this->hasMany(Product::class, 'categories_id', 'id');
     }
 }

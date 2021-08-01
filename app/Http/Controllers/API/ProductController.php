@@ -21,18 +21,17 @@ class ProductController extends Controller
         $price_from = $request->input('price_from');
         $price_to = $request->input('price_to');
 
-
-        $product = Product::with(['category', 'galleries']);
-
         if ($id) {
-            $product->find($id);
+            $product = Product::with(['category', 'galleries'])->find($id);
 
             if ($product) {
                 return ResponseFormater::success($product, 'produk berhasil didapatkan');
             } else {
-                return ResponseFormater::error(null, 'produk tidak ditemukan', 404);
+                return ResponseFormater::error('null', 'produk tidak ditemukan', 404);
             }
         }
+
+        $product = Product::with(['category', 'galleries']);
 
         if ($name) {
             $product->where('name', 'like', '%' . $name . '%');
